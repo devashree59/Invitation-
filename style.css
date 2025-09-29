@@ -1,0 +1,257 @@
+/* ========== Global Reset & Base ========== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+}
+
+/* Remove default margins inside cards */
+.invitation-card h1,
+.invitation-card h2,
+.invitation-card h6,
+.invitation-card p {
+    margin: 0;
+    padding: 0;
+}
+
+.invitation-wrapper {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.invitation-container {
+    scroll-snap-align: start;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ========== Card ========== */
+.invitation-card {
+    background-color: #f7f3f0;
+    height: 100%;
+    width: 100%;
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+/* Background image layer */
+.invitation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    background-color: #ffffff;
+}
+
+/* first-card background */
+.first-card::before {
+    background-image: url('img/image(1).jpg');
+    background-size: 100% 100%;
+}
+
+/* content above ::before */
+.invitation-content {
+    position: relative;
+    z-index: 2;
+    color: #4c4c4c;
+    font-family: 'Times New Roman', serif;
+    width: 100%;
+}
+
+/* Cross icon */
+.cross-icon {
+    font-size: 3rem;
+    color: #6a6a6a;
+}
+
+/* Texts */
+.invitation-message {
+    font-family: 'Grenze';
+    font-size: 0.9rem;
+    color: #8c8c8c;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+
+.couple-names {
+    font-family: 'Great Vibes';
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-top: 1rem;
+}
+
+/* Details */
+.invitation-details .detail-label {
+    font-size: 0.8rem;
+    color: #8c8c8c;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+}
+
+.invitation-details .detail-text {
+    font-family: 'Grenze';
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Countdown */
+.countdown-number {
+    font-family: 'Grenze';
+    font-size: 2rem;
+    font-weight: 300;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+    color: #333;
+}
+
+.to-go-text {
+    font-size: 1rem;
+    color: #8c8c8c;
+}
+
+/* ========== Second Card ========== */
+.invitation-card.second-card {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #f7f3f0;
+}
+
+.invitation-card.second-card::before {
+    display: none;
+}
+
+.couple-image-section {
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.couple-image {
+    width: 100%;
+    height: 55vh;
+    object-fit: cover;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.invitation-content.text-center.py-5 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding:  1.5rem;
+}
+
+.quote-text {
+    font-family: 'Grenze';
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.get-direction-btn {
+    background-color: #6a6a6a;
+    border: none;
+    color: #fff;
+    padding: 0.7rem 2.5rem;
+    border-radius: 30px;
+    font-family: 'Grenze';
+    font-size: 1rem;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.get-direction-btn:hover {
+    background-color: #555;
+}
+
+/* ========== Third Card ========== */
+.parents-details-card::before {
+    background-image: url('img/image(1).jpg');
+    background-size: 100% 100% ;
+}
+
+.parent-section {
+    margin-bottom: 2rem;
+}
+
+.relation-label {
+    font-family: 'Josefin Sans', serif;
+    font-size: 1.2rem;
+    color: #6a6a6a;
+    margin-bottom: 0.5rem;
+}
+
+.parent-names {
+    font-family: 'Josefin Sans';
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #333;
+}
+
+.parent-address {
+    font-family: 'Josefin Sans', serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 576px) {
+    .couple-names { font-size: 2rem; }
+    .countdown-number { font-size: 1.5rem; }
+    .invitation-card { padding: 2rem 1rem; }
+}
+
+@media (min-width: 769px) {
+    .invitation-card {
+        max-width: 400px;
+        height: auto;
+        min-height: 80vh;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        display: block;
+        padding: 3rem 1.5rem;
+    }
+
+    .invitation-card::before {
+        background-size: cover;
+        border-radius: 20px;
+    }
+
+    .couple-image {
+        height: 500px;
+        object-fit: cover;
+    }
+}
