@@ -6,6 +6,7 @@ html, body {
     overflow-x: hidden;
     font-family: Arial, sans-serif;
     background-color: #1a1a1a;
+    
 }
 
 /* Remove default margins inside cards */
@@ -94,14 +95,15 @@ html, body {
     color: #8c8c8c;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-top: 10px;
+    margin-top: 0.1px;
 }
 
 .couple-names {
     font-family: 'Great Vibes';
     font-size: 2.5rem;
-    line-height: 1.2;
-    margin-top: 1rem;
+    line-height: 1.5;
+    margin-top: 3rem;
+    transform: translateY(-30px); /* Moves up by 10px */
 }
 
 /* Details */
@@ -118,6 +120,7 @@ html, body {
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
+    margin-top: 20px;
 }
 
 /* Countdown */
@@ -141,7 +144,8 @@ html, body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: #f7f3f0;
+    background-color: #ffffff;
+    
 }
 
 .invitation-card.second-card::before {
@@ -156,7 +160,7 @@ html, body {
 
 .couple-image {
     width: 100%;
-    height: 70vh;
+    height: 60vh;
     object-fit: cover;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
