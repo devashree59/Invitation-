@@ -85,7 +85,7 @@ wrapper.addEventListener('touchend', (e) => {
 // ===================== Countdown =====================
 function updateCountdown() {
     const countdownElement = document.querySelector('.countdown-number');
-    const weddingDate = new Date('2025-11-24'); // Wedding date
+    const weddingDate = new Date('2025-11-19'); // Wedding date
     const today = new Date();
 
     const diffTime = weddingDate - today;

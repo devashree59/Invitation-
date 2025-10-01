@@ -80,6 +80,7 @@ html, body {
     color: #4c4c4c;
     font-family: 'Times New Roman', serif;
     width: 100%;
+    transform: translateY(20px); /* Move all content down by 20px */
 }
 
 /* Cross icon */
@@ -88,6 +89,14 @@ html, body {
     color: #6a6a6a;
 }
 
+.quote {
+    font-style: italic;
+    color: #666;
+    font-size: 16px;
+    margin: 10px 0 25px 0;
+    line-height: 1.5;
+    padding: 0 20px;
+}
 /* Texts */
 .invitation-message {
     font-family: 'Grenze';
@@ -173,6 +182,7 @@ html, body {
     justify-content: flex-start;
     align-items: center;
     padding:  1.5rem;
+    transform: translateY(20px); /* Move content down for second card too */
 }
 
 .quote-text {
