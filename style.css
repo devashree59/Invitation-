@@ -154,6 +154,8 @@ html, body {
     flex-direction: column;
     justify-content: flex-start;
     background-color: #ffffff;
+    background-size: 100% 100%;
+
     
 }
 
