@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.height = '100vh';
         document.body.style.overflow = 'hidden';
     }
+    
+    // Initialize scroll indicators
+    initScrollIndicators();
 });
 
 // Handle resize events to maintain full-screen appearance
@@ -39,7 +42,17 @@ let currentIndex = 0;
 let isScrolling = false;
 
 function scrollToSection(index) {
-    sections[index].scrollIntoView({ behavior: "smooth" });
+    if (index < 0 || index >= sections.length) return;
+    
+    sections[index].scrollIntoView({ 
+        behavior: "smooth", 
+        block: "nearest",
+        inline: "start" 
+    });
+    
+    // Update active dot
+    updateActiveDot(index);
+    
     setTimeout(() => (isScrolling = false), 600);
 }
 
@@ -48,9 +61,13 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
             currentIndex = [...sections].indexOf(entry.target);
+            updateActiveDot(currentIndex);
         }
     });
-}, { threshold: [0.5] });
+}, { 
+    threshold: [0.5],
+    root: wrapper
+});
 
 sections.forEach(section => observer.observe(section));
 
@@ -59,7 +76,12 @@ wrapper.addEventListener('wheel', (e) => {
     if (isScrolling) return;
     isScrolling = true;
 
-    if (e.deltaY > 0 && currentIndex < sections.length - 1) {
+    if (e.deltaX > 0 && currentIndex < sections.length - 1) {
+        currentIndex++;
+    } else if (e.deltaX < 0 && currentIndex > 0) {
+        currentIndex--;
+    } else if (e.deltaY > 0 && currentIndex < sections.length - 1) {
+        // Also allow vertical scrolling for devices without horizontal scroll
         currentIndex++;
     } else if (e.deltaY < 0 && currentIndex > 0) {
         currentIndex--;
@@ -68,18 +90,51 @@ wrapper.addEventListener('wheel', (e) => {
 });
 
 // Mobile swipe
-let startY = 0;
+let startX = 0;
 wrapper.addEventListener('touchstart', (e) => {
-    startY = e.touches[0].clientY;
+    startX = e.touches[0].clientX;
 });
+
 wrapper.addEventListener('touchend', (e) => {
-    let endY = e.changedTouches[0].clientY;
-    if (endY < startY - 50 && currentIndex < sections.length - 1) {
+    let endX = e.changedTouches[0].clientX;
+    if (endX < startX - 50 && currentIndex < sections.length - 1) {
         currentIndex++;
-    } else if (endY > startY + 50 && currentIndex > 0) {
+    } else if (endX > startX + 50 && currentIndex > 0) {
         currentIndex--;
     }
     scrollToSection(currentIndex);
+});
+
+// Scroll indicators functionality
+function initScrollIndicators() {
+    const dots = document.querySelectorAll('.scroll-dot');
+    
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            currentIndex = index;
+            scrollToSection(index);
+        });
+    });
+}
+
+function updateActiveDot(index) {
+    const dots = document.querySelectorAll('.scroll-dot');
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (isScrolling) return;
+    
+    if (e.key === 'ArrowRight' && currentIndex < sections.length - 1) {
+        currentIndex++;
+        scrollToSection(currentIndex);
+    } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        currentIndex--;
+        scrollToSection(currentIndex);
+    }
 });
 
 // ===================== Countdown =====================

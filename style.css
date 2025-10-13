@@ -6,7 +6,6 @@ html, body {
     overflow-x: hidden;
     font-family: Arial, sans-serif;
     background-color: #1a1a1a;
-    
 }
 
 /* Remove default margins inside cards */
@@ -20,16 +19,21 @@ html, body {
 
 .invitation-wrapper {
     height: 100vh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    width: 100vw;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: row;
 }
 
 .invitation-container {
     scroll-snap-align: start;
     width: 100vw;
     height: 100vh;
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,7 +68,9 @@ html, body {
     background-repeat: no-repeat;
     background-position: center;
     z-index: 1;
-    background-color: #ffffff;
+    /* Remove white background color and low opacity */
+    background-color: transparent;
+    opacity: 1; /* Set to full opacity */
 }
 
 /* first-card background */
@@ -93,7 +99,7 @@ html, body {
     font-style: italic;
     color: #666;
     font-size: 16px;
-    margin: 10px 0 25px 0;
+    margin: 0px 0 25px 0;
     line-height: 1.5;
     padding: 0 20px;
 }
@@ -113,6 +119,11 @@ html, body {
     line-height: 1.5;
     margin-top: 3rem;
     transform: translateY(-30px); /* Moves up by 10px */
+}
+
+/* Reduce space specifically below Jessin Thomas */
+.couple-names:last-child {
+    margin-bottom: 1rem; /* Reduced from default */
 }
 
 /* Details */
@@ -155,8 +166,6 @@ html, body {
     justify-content: flex-start;
     background-color: #ffffff;
     background-size: 100% 100%;
-
-    
 }
 
 .invitation-card.second-card::before {
@@ -205,16 +214,26 @@ html, body {
     font-size: 1rem;
     letter-spacing: 1px;
     transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .get-direction-btn:hover {
     background-color: #555;
+    color: #fff;
+    text-decoration: none;
 }
 
 /* ========== Third Card ========== */
 .parents-details-card::before {
     background-image: url('img/image(1).jpg');
-    background-size: 100% 100% ;
+    background-size: 100% 100%;
+}
+
+/* Move third card content higher up */
+.parents-details-card .invitation-content {
+    transform: translateY(-10px); /* Move content up by 10px instead of down */
 }
 
 .parent-section {
@@ -248,6 +267,16 @@ html, body {
     .couple-names { font-size: 2rem; }
     .countdown-number { font-size: 1.5rem; }
     .invitation-card { padding: 2rem 1rem; }
+    
+    /* Reduce space below Jessin Thomas on mobile */
+    .couple-names:last-child {
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Adjust third card content positioning for mobile */
+    .parents-details-card .invitation-content {
+        transform: translateY(-5px); /* Slightly less movement on mobile */
+    }
 }
 
 @media (min-width: 769px) {
@@ -269,5 +298,14 @@ html, body {
     .couple-image {
         height: 500px;
         object-fit: cover;
+    }
+    
+    .invitation-wrapper {
+        padding: 20px 0;
+    }
+    
+    /* Adjust third card content positioning for desktop */
+    .parents-details-card .invitation-content {
+        transform: translateY(-15px); /* More movement on desktop */
     }
 }
