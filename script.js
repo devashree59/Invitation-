@@ -154,3 +154,58 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000 * 60 * 60); // update every hour
+// Add this after the existing variables at the top
+const arrowLeft = document.createElement('button');
+const arrowRight = document.createElement('button');
+
+// Add this function after the scrollToSection function
+function createNavigationArrows() {
+    // Left arrow
+    arrowLeft.innerHTML = '‹';
+    arrowLeft.className = 'nav-arrow arrow-left';
+    arrowLeft.setAttribute('aria-label', 'Previous card');
+    
+    // Right arrow
+    arrowRight.innerHTML = '›';
+    arrowRight.className = 'nav-arrow arrow-right';
+    arrowRight.setAttribute('aria-label', 'Next card');
+    
+    // Add to DOM
+    document.body.appendChild(arrowLeft);
+    document.body.appendChild(arrowRight);
+    
+    // Event listeners
+    arrowLeft.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            scrollToSection(currentIndex);
+        }
+    });
+    
+    arrowRight.addEventListener('click', () => {
+        if (currentIndex < sections.length - 1) {
+            currentIndex++;
+            scrollToSection(currentIndex);
+        }
+    });
+    
+    // Initial state
+    updateArrowVisibility();
+}
+
+function updateArrowVisibility() {
+    arrowLeft.classList.toggle('hidden', currentIndex === 0);
+    arrowRight.classList.toggle('hidden', currentIndex === sections.length - 1);
+}
+
+// Update the scrollToSection function to include arrow visibility
+function scrollToSection(index) {
+    sections[index].scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+        isScrolling = false;
+        updateArrowVisibility();
+    }, 600);
+}
+
+// Call this function at the end of your script, before the countdown section
+createNavigationArrows();

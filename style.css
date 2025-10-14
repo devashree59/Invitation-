@@ -261,7 +261,55 @@ html, body {
     line-height: 1.5;
     color: #555;
 }
+/* ========== Navigation Arrows ========== */
+.nav-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #8c8c8c;
+    cursor: pointer;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
 
+.nav-arrow:hover {
+    color: #6a6a6a;
+    opacity: 1;
+    transform: translateY(-50%) scale(1.2);
+}
+
+.arrow-left {
+    left: 30px;
+}
+
+.arrow-right {
+    right: 30px;
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 768px) {
+    .nav-arrow {
+        display: none;
+    }
+}
+
+/* Hide arrows when at first/last card */
+.nav-arrow.hidden {
+    opacity: 0.2;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 /* ========== Responsive ========== */
 @media (max-width: 576px) {
     .couple-names { font-size: 2rem; }
