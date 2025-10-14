@@ -68,9 +68,8 @@ html, body {
     background-repeat: no-repeat;
     background-position: center;
     z-index: 1;
-    /* Remove white background color and low opacity */
     background-color: transparent;
-    opacity: 1; /* Set to full opacity */
+    opacity: 1;
 }
 
 /* first-card background */
@@ -86,7 +85,7 @@ html, body {
     color: #4c4c4c;
     font-family: 'Times New Roman', serif;
     width: 100%;
-    transform: translateY(20px); /* Move all content down by 20px */
+    transform: translateY(20px);
 }
 
 /* Cross icon */
@@ -103,6 +102,7 @@ html, body {
     line-height: 1.5;
     padding: 0 20px;
 }
+
 /* Texts */
 .invitation-message {
     font-family: 'Grenze';
@@ -118,12 +118,12 @@ html, body {
     font-size: 2.5rem;
     line-height: 1.5;
     margin-top: 3rem;
-    transform: translateY(-30px); /* Moves up by 10px */
+    transform: translateY(-30px);
 }
 
 /* Reduce space specifically below Jessin Thomas */
 .couple-names:last-child {
-    margin-bottom: 1rem; /* Reduced from default */
+    margin-bottom: 1rem;
 }
 
 /* Details */
@@ -192,8 +192,8 @@ html, body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding:  1.5rem;
-    transform: translateY(20px); /* Move content down for second card too */
+    padding: 1.5rem;
+    transform: translateY(20px);
 }
 
 .quote-text {
@@ -233,7 +233,7 @@ html, body {
 
 /* Move third card content higher up */
 .parents-details-card .invitation-content {
-    transform: translateY(-10px); /* Move content up by 10px instead of down */
+    transform: translateY(-10px);
 }
 
 .parent-section {
@@ -261,6 +261,7 @@ html, body {
     line-height: 1.5;
     color: #555;
 }
+
 /* ========== Navigation Arrows ========== */
 .nav-arrow {
     position: fixed;
@@ -268,33 +269,33 @@ html, body {
     transform: translateY(-50%);
     background: transparent;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: bold;
-    color: #2a2828;
+    color: #8c8c8c;
     cursor: pointer;
     z-index: 9999;
     transition: all 0.3s ease;
-    opacity: 0.8;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .nav-arrow:hover {
     color: #6a6a6a;
     opacity: 1;
-    transform: translateY(-50%) scale(1.2);
+    transform: translateY(-50%) scale(1.3);
 }
 
 .arrow-left {
-    left: 30px;
+    left: 20px;
 }
 
 .arrow-right {
-    right: 30px;
+    right: 20px;
 }
 
 /* Hide arrows on mobile */
@@ -306,10 +307,11 @@ html, body {
 
 /* Hide arrows when at first/last card */
 .nav-arrow.hidden {
-    opacity: 0.2;
+    opacity: 0.3;
     cursor: not-allowed;
     pointer-events: none;
 }
+
 /* ========== Responsive ========== */
 @media (max-width: 576px) {
     .couple-names { font-size: 2rem; }
@@ -323,7 +325,7 @@ html, body {
     
     /* Adjust third card content positioning for mobile */
     .parents-details-card .invitation-content {
-        transform: translateY(-5px); /* Slightly less movement on mobile */
+        transform: translateY(-5px);
     }
 }
 
@@ -354,6 +356,6 @@ html, body {
     
     /* Adjust third card content positioning for desktop */
     .parents-details-card .invitation-content {
-        transform: translateY(-15px); /* More movement on desktop */
+        transform: translateY(-15px);
     }
 }
