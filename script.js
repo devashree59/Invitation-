@@ -8,24 +8,19 @@ const arrowLeft = document.createElement('button');
 const arrowRight = document.createElement('button');
 
 function createNavigationArrows() {
-    // Left arrow
     arrowLeft.innerHTML = '‹';
     arrowLeft.className = 'nav-arrow arrow-left';
     arrowLeft.setAttribute('aria-label', 'Previous card');
     
-    // Right arrow
     arrowRight.innerHTML = '›';
     arrowRight.className = 'nav-arrow arrow-right';
     arrowRight.setAttribute('aria-label', 'Next card');
     
-    // Add to DOM
     document.body.appendChild(arrowLeft);
     document.body.appendChild(arrowRight);
     
-    // Event listeners
     arrowLeft.addEventListener('click', () => {
         if (!isScrolling && currentIndex > 0) {
-            isScrolling = true;
             currentIndex--;
             scrollToSection(currentIndex);
         }
@@ -33,13 +28,11 @@ function createNavigationArrows() {
     
     arrowRight.addEventListener('click', () => {
         if (!isScrolling && currentIndex < sections.length - 1) {
-            isScrolling = true;
             currentIndex++;
             scrollToSection(currentIndex);
         }
     });
-    
-    // Initial state
+
     updateArrowVisibility();
 }
 
@@ -49,7 +42,8 @@ function updateArrowVisibility() {
 }
 
 function scrollToSection(index) {
-    sections[index].scrollIntoView({ 
+    isScrolling = true;
+    sections[index].scrollIntoView({
         behavior: "smooth",
         block: "nearest",
         inline: "center"
@@ -57,33 +51,33 @@ function scrollToSection(index) {
     setTimeout(() => {
         isScrolling = false;
         updateArrowVisibility();
-    }, 600);
+    }, 700);
 }
 
-// Initialize arrows when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     createNavigationArrows();
     updateArrowVisibility();
 });
 
-// Intersection Observer for horizontal scroll snap
+// Intersection Observer to update arrow state
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
             currentIndex = [...sections].indexOf(entry.target);
             updateArrowVisibility();
         }
     });
 }, { 
-    threshold: [0.7],
+    threshold: [0.6],
     rootMargin: '0px'
 });
 
 sections.forEach(section => observer.observe(section));
 
-// Desktop wheel for horizontal scrolling
+// Smooth scroll for mouse wheel (desktop)
 wrapper.addEventListener('wheel', (e) => {
     if (isScrolling) return;
+    if (Math.abs(e.deltaY) < 10) return; // prevent accidental triggers
     isScrolling = true;
 
     if (e.deltaY > 0 && currentIndex < sections.length - 1) {
@@ -94,7 +88,7 @@ wrapper.addEventListener('wheel', (e) => {
     scrollToSection(currentIndex);
 });
 
-// Mobile swipe for horizontal scrolling
+// Smooth scroll for mobile swipe (Android/iOS)
 let startX = 0;
 wrapper.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
