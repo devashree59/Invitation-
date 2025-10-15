@@ -6,6 +6,8 @@ html, body {
     overflow-x: hidden;
     font-family: Arial, sans-serif;
     background-color: #1a1a1a;
+    overflow-y: hidden; /* ✅ prevent vertical scrolling */
+
 }
 
 /* Remove default margins inside cards */
