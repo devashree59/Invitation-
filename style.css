@@ -22,7 +22,7 @@ html, body {
 .invitation-wrapper {
     height: 100vh;
     width: 100vw;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
